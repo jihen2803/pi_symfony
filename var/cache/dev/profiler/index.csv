@@ -23,3 +23,7 @@ cd28d6,127.0.0.1,GET,https://127.0.0.1:8000/stations/2/velos,1745779217,,200,req
 e353df,127.0.0.1,GET,https://127.0.0.1:8000/stations/search?search=la%20petite%20ariana,1745780024,,200,request
 81620e,127.0.0.1,GET,https://127.0.0.1:8000/stations/2/velos,1745780034,,200,request
 0d95f4,127.0.0.1,POST,https://127.0.0.1:8000/reservationvelo/start,1745780053,,302,request
+15095f,127.0.0.1,GET,https://127.0.0.1:8000/,1745781953,,404,request
+e7346b,127.0.0.1,GET,https://127.0.0.1:8000/stations,1745781962,,200,request
+b808ff,127.0.0.1,GET,https://127.0.0.1:8000/stations/search?search=la%20petite%20ariana,1745781976,,200,request
+74776e,127.0.0.1,GET,https://127.0.0.1:8000/accueil,1745781982,,200,request
