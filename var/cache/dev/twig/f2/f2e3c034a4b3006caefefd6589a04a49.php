@@ -51,25 +51,21 @@ class __TwigTemplate_b6e52b4ed5c96092bd8295fd447dcb49 extends Template
 
 <p>Thank you for reserving a bike!</p>
 
-<p><strong>Bike ID:</strong> ";
-        // line 5
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["velo"]) || array_key_exists("velo", $context) ? $context["velo"] : (function () { throw new RuntimeError('Variable "velo" does not exist.', 5, $this->source); })()), "id_velo", [], "any", false, false, false, 5), "html", null, true);
-        yield "</p>
 <p><strong>Type:</strong> ";
-        // line 6
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["velo"]) || array_key_exists("velo", $context) ? $context["velo"] : (function () { throw new RuntimeError('Variable "velo" does not exist.', 6, $this->source); })()), "veloType", [], "any", false, false, false, 6), "type_name", [], "any", false, false, false, 6), "html", null, true);
+        // line 5
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["velo"]) || array_key_exists("velo", $context) ? $context["velo"] : (function () { throw new RuntimeError('Variable "velo" does not exist.', 5, $this->source); })()), "veloType", [], "any", false, false, false, 5), "type_name", [], "any", false, false, false, 5), "html", null, true);
         yield "</p>
 <p><strong>Price:</strong> ";
-        // line 7
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 7, $this->source); })()), "price", [], "any", false, false, false, 7), "html", null, true);
+        // line 6
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 6, $this->source); })()), "price", [], "any", false, false, false, 6), "html", null, true);
         yield " TND</p>
 <p><strong>Start:</strong> ";
-        // line 8
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 8, $this->source); })()), "dateDebut", [], "any", false, false, false, 8), "Y-m-d H:i"), "html", null, true);
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 7, $this->source); })()), "dateDebut", [], "any", false, false, false, 7), "Y-m-d H:i"), "html", null, true);
         yield "</p>
 <p><strong>End:</strong> ";
-        // line 9
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 9, $this->source); })()), "dateFin", [], "any", false, false, false, 9), "Y-m-d H:i"), "html", null, true);
+        // line 8
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, (isset($context["reservation"]) || array_key_exists("reservation", $context) ? $context["reservation"] : (function () { throw new RuntimeError('Variable "reservation" does not exist.', 8, $this->source); })()), "dateFin", [], "any", false, false, false, 8), "Y-m-d H:i"), "html", null, true);
         yield "</p>
 
 <p>Have a safe ride!</p>
@@ -104,7 +100,7 @@ class __TwigTemplate_b6e52b4ed5c96092bd8295fd447dcb49 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  72 => 9,  68 => 8,  64 => 7,  60 => 6,  56 => 5,  48 => 1,);
+        return array (  68 => 8,  64 => 7,  60 => 6,  56 => 5,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -113,7 +109,6 @@ class __TwigTemplate_b6e52b4ed5c96092bd8295fd447dcb49 extends Template
 
 <p>Thank you for reserving a bike!</p>
 
-<p><strong>Bike ID:</strong> {{ velo.id_velo }}</p>
 <p><strong>Type:</strong> {{ velo.veloType.type_name }}</p>
 <p><strong>Price:</strong> {{ reservation.price }} TND</p>
 <p><strong>Start:</strong> {{ reservation.dateDebut|date('Y-m-d H:i') }}</p>

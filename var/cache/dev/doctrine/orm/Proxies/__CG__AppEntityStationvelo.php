@@ -33,8 +33,6 @@ class Stationvelo extends \App\Entity\Stationvelo implements \Doctrine\ORM\Proxy
         'adresse' => [parent::class, 'adresse', null, 16],
         'gouvernera' => [parent::class, 'gouvernera', null, 16],
         'id_station' => [parent::class, 'id_station', null, 16],
-        'lat' => [parent::class, 'lat', null, 4],
-        'lon' => [parent::class, 'lon', null, 4],
         'municapilite' => [parent::class, 'municapilite', null, 16],
         'name_station' => [parent::class, 'name_station', null, 16],
         'station_image' => [parent::class, 'station_image', null, 16],

@@ -192,11 +192,16 @@ class __TwigTemplate_ffa1499fa0e69c21ddb0f46d099ecfa1 extends Template
 
   <main id=\"main\" class=\"main\">
     <section class=\"section dashboard\">
-      ";
+        ";
         // line 92
-        yield Twig\Extension\CoreExtension::include($this->env, $context, "Admin/stationvelo/_form.html.twig");
+        yield Twig\Extension\CoreExtension::include($this->env, $context, "Admin/stationvelo/_form.html.twig", ["form" => (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 92, $this->source); })())]);
         yield "
-      
+      ";
+        // line 93
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 93, $this->source); })()), 'errors');
+        yield " ";
+        // line 94
+        yield "      
       <style>
         .bike-type-form {
             --primary: #3a86ff;
@@ -366,7 +371,7 @@ class __TwigTemplate_ffa1499fa0e69c21ddb0f46d099ecfa1 extends Template
 
       <div class=\"action-buttons\" style=\"margin-top: 2rem; text-align: center;\">
           <a href=\"";
-        // line 262
+        // line 263
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_stations_index");
         yield "\" class=\"btn btn-back\" style=\"background: white; color: #3a86ff; border: 1px solid rgba(58, 134, 255, 0.3);\">
               <i class=\"fas fa-arrow-left\"></i> Retour à la liste
@@ -405,7 +410,7 @@ class __TwigTemplate_ffa1499fa0e69c21ddb0f46d099ecfa1 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  370 => 262,  197 => 92,  170 => 68,  160 => 61,  150 => 54,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  375 => 263,  204 => 94,  201 => 93,  197 => 92,  170 => 68,  160 => 61,  150 => 54,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -501,7 +506,8 @@ class __TwigTemplate_ffa1499fa0e69c21ddb0f46d099ecfa1 extends Template
 
   <main id=\"main\" class=\"main\">
     <section class=\"section dashboard\">
-      {{ include('Admin/stationvelo/_form.html.twig') }}
+        {{ include('Admin/stationvelo/_form.html.twig', { form: form }) }}
+      {{ form_errors(form) }} {# Display validation errors for the entire form #}
       
       <style>
         .bike-type-form {

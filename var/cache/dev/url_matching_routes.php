@@ -22,6 +22,7 @@ return [
         '/reservation/taxi' => [[['_route' => 'app_reservation_taxi_index', '_controller' => 'App\\Controller\\ReservationTaxiController::index'], null, ['GET' => 0], null, false, false, null]],
         '/reservation/taxi/new' => [[['_route' => 'app_reservation_taxi_new', '_controller' => 'App\\Controller\\ReservationTaxiController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/reservationvelo' => [[['_route' => 'app_reservationvelo_index', '_controller' => 'App\\Controller\\ReservationveloController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/reservationvelo/start' => [[['_route' => 'app_reservationvelo_start', '_controller' => 'App\\Controller\\ReservationveloController::startReservation'], null, ['POST' => 0], null, false, false, null]],
         '/reservationvelo/new' => [[['_route' => 'app_reservationvelo_new', '_controller' => 'App\\Controller\\ReservationveloController::new'], null, ['POST' => 0], null, false, false, null]],
         '/stations' => [[['_route' => 'app_stations_index', '_controller' => 'App\\Controller\\StationveloController::index'], null, null, null, false, false, null]],
         '/stations/search' => [[['_route' => 'app_stations_search', '_controller' => 'App\\Controller\\StationveloController::searchStations'], null, null, null, false, false, null]],
@@ -76,43 +77,46 @@ return [
                             .'|(*:409)'
                         .')'
                     .')'
-                    .'|velo/([^/]++)(?'
-                        .'|(*:435)'
-                        .'|/(?'
-                            .'|edit(*:451)'
-                            .'|download\\-pdf(*:472)'
+                    .'|velo/(?'
+                        .'|payment/success/([^/]++)(*:451)'
+                        .'|([^/]++)(?'
+                            .'|(*:470)'
+                            .'|/(?'
+                                .'|edit(*:486)'
+                                .'|download\\-pdf(*:507)'
+                            .')'
+                            .'|(*:516)'
                         .')'
-                        .'|(*:481)'
                     .')'
                 .')'
                 .'|/station(?'
                     .'|/([^/]++)(?'
                         .'|/(?'
-                            .'|edit(*:522)'
-                            .'|velos(*:535)'
+                            .'|edit(*:558)'
+                            .'|velos(*:571)'
                         .')'
-                        .'|(*:544)'
+                        .'|(*:580)'
                     .')'
-                    .'|s/([^/]++)/velos(*:569)'
+                    .'|s/([^/]++)/velos(*:605)'
                 .')'
                 .'|/ve(?'
                     .'|hicule/([^/]++)(?'
-                        .'|(*:602)'
-                        .'|/edit(*:615)'
-                        .'|(*:623)'
+                        .'|(*:638)'
+                        .'|/edit(*:651)'
+                        .'|(*:659)'
                     .')'
                     .'|lo/(?'
-                        .'|new/([^/]++)(*:650)'
+                        .'|new/([^/]++)(*:686)'
                         .'|([^/]++)(?'
-                            .'|/edit(*:674)'
-                            .'|(*:682)'
+                            .'|/edit(*:710)'
+                            .'|(*:718)'
                         .')'
                         .'|type(?'
-                            .'|(*:698)'
+                            .'|(*:734)'
                             .'|/([^/]++)(?'
-                                .'|(*:718)'
-                                .'|/edit(*:731)'
-                                .'|(*:739)'
+                                .'|(*:754)'
+                                .'|/edit(*:767)'
+                                .'|(*:775)'
                             .')'
                         .')'
                     .')'
@@ -139,24 +143,25 @@ return [
         388 => [[['_route' => 'app_reservation_taxi_show', '_controller' => 'App\\Controller\\ReservationTaxiController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         401 => [[['_route' => 'app_reservation_taxi_edit', '_controller' => 'App\\Controller\\ReservationTaxiController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         409 => [[['_route' => 'app_reservation_taxi_delete', '_controller' => 'App\\Controller\\ReservationTaxiController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        435 => [[['_route' => 'app_reservationvelo_show', '_controller' => 'App\\Controller\\ReservationveloController::show'], ['id_reservation_velo'], ['GET' => 0], null, false, true, null]],
-        451 => [[['_route' => 'app_reservationvelo_edit', '_controller' => 'App\\Controller\\ReservationveloController::edit'], ['id_reservation_velo'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        472 => [[['_route' => 'app_reservationvelo_download_pdf', '_controller' => 'App\\Controller\\ReservationveloController::downloadPdf'], ['id_reservation_velo'], null, null, false, false, null]],
-        481 => [[['_route' => 'app_reservationvelo_delete', '_controller' => 'App\\Controller\\ReservationveloController::delete'], ['id_reservation_velo'], ['POST' => 0], null, false, true, null]],
-        522 => [[['_route' => 'app_station_edit', '_controller' => 'App\\Controller\\StationveloController::edit'], ['id'], null, null, false, false, null]],
-        535 => [[['_route' => 'app_station_velos', '_controller' => 'App\\Controller\\VeloController::index'], ['id'], null, null, false, false, null]],
-        544 => [[['_route' => 'app_station_delete', '_controller' => 'App\\Controller\\StationveloController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        569 => [[['_route' => 'velos_list', '_controller' => 'App\\Controller\\StationveloController::listVelos'], ['id'], null, null, false, false, null]],
-        602 => [[['_route' => 'app_vehicule_show', '_controller' => 'App\\Controller\\VehiculeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        615 => [[['_route' => 'app_vehicule_edit', '_controller' => 'App\\Controller\\VehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        623 => [[['_route' => 'app_vehicule_delete', '_controller' => 'App\\Controller\\VehiculeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        650 => [[['_route' => 'app_velo_new', '_controller' => 'App\\Controller\\VeloController::new'], ['stationId'], null, null, false, true, null]],
-        674 => [[['_route' => 'app_velo_edit', '_controller' => 'App\\Controller\\VeloController::edit'], ['id'], null, null, false, false, null]],
-        682 => [[['_route' => 'app_velo_delete', '_controller' => 'App\\Controller\\VeloController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        698 => [[['_route' => 'app_velo_type_index', '_controller' => 'App\\Controller\\VeloTypeController::index'], [], ['GET' => 0], null, false, false, null]],
-        718 => [[['_route' => 'app_velo_type_show', '_controller' => 'App\\Controller\\VeloTypeController::show'], ['id_type'], ['GET' => 0], null, false, true, null]],
-        731 => [[['_route' => 'app_velo_type_edit', '_controller' => 'App\\Controller\\VeloTypeController::edit'], ['id_type'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        739 => [
+        451 => [[['_route' => 'app_reservationvelo_payment_success', '_controller' => 'App\\Controller\\ReservationveloController::paymentSuccess'], ['paymentId'], null, null, false, true, null]],
+        470 => [[['_route' => 'app_reservationvelo_show', '_controller' => 'App\\Controller\\ReservationveloController::show'], ['id_reservation_velo'], ['GET' => 0], null, false, true, null]],
+        486 => [[['_route' => 'app_reservationvelo_edit', '_controller' => 'App\\Controller\\ReservationveloController::edit'], ['id_reservation_velo'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        507 => [[['_route' => 'app_reservationvelo_download_pdf', '_controller' => 'App\\Controller\\ReservationveloController::downloadPdf'], ['id_reservation_velo'], null, null, false, false, null]],
+        516 => [[['_route' => 'app_reservationvelo_delete', '_controller' => 'App\\Controller\\ReservationveloController::delete'], ['id_reservation_velo'], ['POST' => 0], null, false, true, null]],
+        558 => [[['_route' => 'app_station_edit', '_controller' => 'App\\Controller\\StationveloController::edit'], ['id'], null, null, false, false, null]],
+        571 => [[['_route' => 'app_station_velos', '_controller' => 'App\\Controller\\VeloController::index'], ['id'], null, null, false, false, null]],
+        580 => [[['_route' => 'app_station_delete', '_controller' => 'App\\Controller\\StationveloController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        605 => [[['_route' => 'velos_list', '_controller' => 'App\\Controller\\StationveloController::listVelos'], ['id'], null, null, false, false, null]],
+        638 => [[['_route' => 'app_vehicule_show', '_controller' => 'App\\Controller\\VehiculeController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        651 => [[['_route' => 'app_vehicule_edit', '_controller' => 'App\\Controller\\VehiculeController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        659 => [[['_route' => 'app_vehicule_delete', '_controller' => 'App\\Controller\\VehiculeController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        686 => [[['_route' => 'app_velo_new', '_controller' => 'App\\Controller\\VeloController::new'], ['stationId'], null, null, false, true, null]],
+        710 => [[['_route' => 'app_velo_edit', '_controller' => 'App\\Controller\\VeloController::edit'], ['id'], null, null, false, false, null]],
+        718 => [[['_route' => 'app_velo_delete', '_controller' => 'App\\Controller\\VeloController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        734 => [[['_route' => 'app_velo_type_index', '_controller' => 'App\\Controller\\VeloTypeController::index'], [], ['GET' => 0], null, false, false, null]],
+        754 => [[['_route' => 'app_velo_type_show', '_controller' => 'App\\Controller\\VeloTypeController::show'], ['id_type'], ['GET' => 0], null, false, true, null]],
+        767 => [[['_route' => 'app_velo_type_edit', '_controller' => 'App\\Controller\\VeloTypeController::edit'], ['id_type'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        775 => [
             [['_route' => 'app_velo_type_delete', '_controller' => 'App\\Controller\\VeloTypeController::delete'], ['id_type'], ['POST' => 0], null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
