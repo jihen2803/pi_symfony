@@ -56,10 +56,10 @@ class StationveloController extends AbstractController
             $qb->andWhere('s.adresse LIKE :adr')->setParameter('adr', "%$adresse%");
         }
 
-        $stations = $qb->getQuery()->getResult();
+        
 
         foreach ($stations as $station) {
-            
+            $fullAddress = urlencode($station->getGouvernera() . ' ' . $station->getMunicapilite() . ' ' . $station->getAdresse());
 
             try {
                 $response = $this->client->request('GET', 'https://nominatim.openstreetmap.org/search', [
