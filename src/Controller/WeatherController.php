@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Service;
+namespace App\Controller;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class WeatherService
+class WeatherController
 {
     private HttpClientInterface $client;
     private const GEO_URL = 'https://geocoding-api.open-meteo.com/v1/search';

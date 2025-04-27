@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Service\WeatherService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController
 {
     #[Route('/accueil', name: 'app_accueil')]
-    public function index(WeatherService $weatherService, EntityManagerInterface $em): Response
+    public function index(WeatherController $weatherService, EntityManagerInterface $em): Response
     {
         // Load the user with ID 1 from the database
         $user = $em->getRepository(User::class)->find(1);

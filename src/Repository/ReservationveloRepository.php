@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Reservationvelo;
+use App\Entity\Velo;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,7 +16,18 @@ class ReservationveloRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Reservationvelo::class);
     }
-
+    public function findOverlappingReservation(Velo $velo, \DateTimeInterface $start, \DateTimeInterface $end)
+{
+    return $this->createQueryBuilder('r')
+        ->where('r.velo = :velo')
+        ->andWhere('r.date_debut < :end AND r.date_fin > :start')
+        ->setParameter('velo', $velo)
+        ->setParameter('start', $start)
+        ->setParameter('end', $end)
+        ->setMaxResults(1)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
     //    /**
     //     * @return Reservationvelo[] Returns an array of Reservationvelo objects
     //     */

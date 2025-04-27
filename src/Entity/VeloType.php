@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert; // Import validation constraints
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -41,8 +41,7 @@ class VeloType
     private ?float $price = null;
 
     #[ORM\Column(type: 'string', nullable: false)]
-    #[Assert\NotBlank(message: "The image path cannot be blank.")]
-    #[Assert\Url(message: "The image path must be a valid URL.")]
+    
     private ?string $velo_image = null;
 
     public function getId_type(): ?int

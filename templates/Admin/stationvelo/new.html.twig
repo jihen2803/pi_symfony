@@ -89,7 +89,8 @@
 
   <main id="main" class="main">
     <section class="section dashboard">
-      {{ include('Admin/stationvelo/_form.html.twig') }}
+        {{ include('Admin/stationvelo/_form.html.twig', { form: form }) }}
+      {{ form_errors(form) }} {# Display validation errors for the entire form #}
       
       <style>
         .bike-type-form {

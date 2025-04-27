@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Entity\Velo;
 use App\Form\ReservationveloType;
 use App\Repository\ReservationveloRepository;
+use App\Service\KonnectPaymentService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,48 +28,245 @@ final class ReservationveloController extends AbstractController
             'reservationvelos' => $reservationveloRepository->findAll(),
         ]);
     }
-
-    #[Route('/new', name: 'app_reservationvelo_new', methods: ['POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    #[Route('/start', name: 'app_reservationvelo_start', methods: ['POST'])]
+    public function startReservation(Request $request, EntityManagerInterface $entityManager, KonnectPaymentService $paymentService): Response
     {
         $veloId = $request->request->get('velo_id');
-        $velo = $entityManager->getRepository(Velo::class)->find($veloId);
+        $startDate = $request->request->get('start_date');
+        $endDate = $request->request->get('end_date');
     
-        if (!$velo) {
-            $this->addFlash('error', 'Vélo not found.');
+        if (!$veloId || !$startDate || !$endDate) {
+            $this->addFlash('error', 'Missing reservation parameters');
             return $this->redirectToRoute('app_stations_search');
         }
     
-        $reservationvelo = new Reservationvelo();
-        $reservationvelo->setVelo($velo);
-        $user = $entityManager->getRepository(User::class)->find(1); // Replace with current user
-        $reservationvelo->setUser($user);
-        $reservationvelo->setDateDebut(new \DateTime());
-        $reservationvelo->setDateFin((new \DateTime())->modify('+1 day'));
-        $reservationvelo->setStatut('booked');
-        $reservationvelo->setPrice($velo->getVeloType()->getPrice());
+        $user = $entityManager->getRepository(User::class)->find(1); // TODO: replace with current user
+        if (!$user) {
+            $this->addFlash('error', 'You must be logged in to make a reservation');
+            return $this->redirectToRoute('app_login');
+        }
     
-        $velo->setDispo(false);
+        try {
+            $startDateTime = new \DateTime($startDate);
+            $endDateTime = new \DateTime($endDate);
+            if ($endDateTime <= $startDateTime) {
+                $this->addFlash('error', 'End date must be after start date');
+                return $this->redirectToRoute('app_stations_search');
+            }
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Invalid date format');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        $velo = $entityManager->getRepository(Velo::class)->find($veloId);
+        if (!$velo) {
+            $this->addFlash('error', 'Bike not found');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // Check overlapping reservations
+        $existingReservation = $entityManager->getRepository(Reservationvelo::class)
+            ->findOverlappingReservation($velo, $startDateTime, $endDateTime);
+        if ($existingReservation) {
+            $this->addFlash('error', 'This bike is already reserved for the selected dates');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        $interval = $startDateTime->diff($endDateTime);
+        $hours = $interval->h + ($interval->days * 24) + ($interval->i / 60);
+        $price = $velo->getVeloType()->getPrice() * $hours;
+    
+        // 1. Call payment creation
+        $paymentUrl = $paymentService->createPayment((int) ($price * 1000), '680e79d636eae5c3e033a84b');
+    
+        if (!$paymentUrl) {
+            $this->addFlash('error', 'Failed to initiate payment');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // 2. Save temporary reservation data in session (or you can pass them in URL params encrypted)
+        $session = $request->getSession();
+        $session->set('reservation_data', [
+            'velo_id' => $velo->getId_Velo(),
+            'id' => $user->getId(),
+            'start' => $startDate,
+            'end' => $endDate,
+            'price' => $price,
+        ]);
+    
+        // 3. Redirect user to payment page
+        return $this->redirect($paymentUrl);
+    }
+    #[Route('/payment/success/{paymentId}', name: 'app_reservationvelo_payment_success')]
+public function paymentSuccess(string $paymentId, Request $request, EntityManagerInterface $entityManager, KonnectPaymentService $paymentService, MailerInterface $mailer): Response
+{
+    $session = $request->getSession();
+    $reservationData = $session->get('reservation_data');
+
+    if (!$reservationData) {
+        $this->addFlash('error', 'No reservation data found.');
+        return $this->redirectToRoute('app_stations_search');
+    }
+
+    // Check payment status
+    $status = $paymentService->checkPaymentStatus($paymentId);
+
+    if ($status !== 'completed') {
+        $this->addFlash('error', 'Payment was not successful.');
+        return $this->redirectToRoute('app_stations_search');
+    }
+
+    // Create reservation after payment success
+    $user = $entityManager->getRepository(User::class)->find($reservationData['user_id']);
+    $velo = $entityManager->getRepository(Velo::class)->find($reservationData['velo_id']);
+
+    if (!$user || !$velo) {
+        $this->addFlash('error', 'Error creating reservation.');
+        return $this->redirectToRoute('app_stations_search');
+    }
+
+    $reservation = new Reservationvelo();
+    $reservation->setVelo($velo);
+    $reservation->setUser($user);
+    $reservation->setDateDebut(new \DateTime($reservationData['start']));
+    $reservation->setDateFin(new \DateTime($reservationData['end']));
+    $reservation->setStatut('booked');
+    $reservation->setPrice($reservationData['price']);
+    $reservation->setPaymentStatus('paid');
+
+    $velo->setDispo(false);
+
+    try {
+        $entityManager->persist($reservation);
         $entityManager->persist($velo);
-        $entityManager->persist($reservationvelo);
         $entityManager->flush();
-    
-        // Send email
+
+        // Send email (same logic you already have)
         $email = (new TemplatedEmail())
-            ->from('jihenalayette123@gmail.com')
+            ->from('noreply@yourdomain.com')
             ->to($user->getEmail())
             ->subject('Bike Reservation Confirmation')
             ->htmlTemplate('emails/reservation_confirmation.html.twig')
             ->context([
                 'user' => $user,
-                'reservation' => $reservationvelo,
-                'velo' => $velo,
+                'reservation' => $reservation,
             ]);
-    
         $mailer->send($email);
+
+        $session->remove('reservation_data'); // Clear session
+        $this->addFlash('success', 'Reservation created successfully!');
+
+        return $this->redirectToRoute('app_reservationvelo_show', [
+            'id_reservation_velo' => $reservation->getIdReservationVelo(),
+        ]);
+    } catch (\Exception $e) {
+        $this->addFlash('error', 'Failed to create reservation: '.$e->getMessage());
+        return $this->redirectToRoute('app_stations_search');
+    }
+}
+
+    #[Route('/new', name: 'app_reservationvelo_new', methods: ['POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
+    {
+        $veloId = $request->request->get('velo_id');
+        $startDate = $request->request->get('start_date');
+        $endDate = $request->request->get('end_date');
     
-        $this->addFlash('success', 'Vélo reserved successfully!');
-        return $this->redirectToRoute('app_reservationvelo_index');
+        // Validate required parameters
+        if (!$veloId || !$startDate || !$endDate) {
+            $this->addFlash('error', 'Missing reservation parameters');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // Get authenticated user
+        $user = $entityManager->getRepository(User::class)->find(1); // Replace with current user
+        if (!$user) {
+            $this->addFlash('error', 'You must be logged in to make a reservation');
+            return $this->redirectToRoute('app_login');
+        }
+    
+        // Validate dates
+        try {
+            $startDateTime = new \DateTime($startDate);
+            $endDateTime = new \DateTime($endDate);
+            
+            if ($endDateTime <= $startDateTime) {
+                $this->addFlash('error', 'End date must be after start date');
+                return $this->redirectToRoute('app_stations_search');
+            }
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Invalid date format');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        $velo = $entityManager->getRepository(Velo::class)->find($veloId);
+        
+        if (!$velo) {
+            $this->addFlash('error', 'Bike not found');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // Check for existing reservations
+        $existingReservation = $entityManager->getRepository(Reservationvelo::class)
+            ->findOverlappingReservation($velo, $startDateTime, $endDateTime);
+    
+        if ($existingReservation) {
+            $this->addFlash('error', 'This bike is already reserved for the selected dates');
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // Calculate duration and price
+        $interval = $startDateTime->diff($endDateTime);
+        $hours = $interval->h + ($interval->days * 24) + ($interval->i / 60);
+        $price = $velo->getVeloType()->getPrice() * $hours;
+    
+        // Create reservation
+        $reservation = new Reservationvelo();
+        $reservation->setVelo($velo);
+        $reservation->setUser($user);
+        $reservation->setDateDebut($startDateTime);
+        $reservation->setDateFin($endDateTime);
+        $reservation->setStatut('booked');
+        $reservation->setPrice($price);
+        $reservation->setPaymentStatus('pending');
+    
+        // Update bike availability
+        $velo->setDispo(false);
+    
+        try {
+            $entityManager->persist($reservation);
+            $entityManager->persist($velo);
+            $entityManager->flush();
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Error saving reservation: ' . $e->getMessage());
+            return $this->redirectToRoute('app_stations_search');
+        }
+    
+        // Send confirmation email
+        try {
+            $email = (new TemplatedEmail())
+                ->from('noreply@yourdomain.com')
+                ->to($user->getEmail())
+                ->subject('Bike Reservation Confirmation')
+                ->htmlTemplate('emails/reservation_confirmation.html.twig')
+                ->context([
+                    'user' => $user,
+                    'reservation' => $reservation,
+                    'start_date' => $startDateTime->format('Y-m-d H:i'),
+                    'end_date' => $endDateTime->format('Y-m-d H:i'),
+                    'total_price' => $price
+                ]);
+    
+            $mailer->send($email);
+        } catch (\Exception $e) {
+            // Log email error but don't fail the reservation
+            $this->addFlash('warning', 'Reservation created but confirmation email failed to send');
+        }
+    
+        $this->addFlash('success', 'Reservation created successfully!');
+        return $this->redirectToRoute('app_reservationvelo_show', [
+            'id_reservation_velo' => $reservation->getIdReservationVelo()
+        ]);
     }
     
 

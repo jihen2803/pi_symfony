@@ -13,7 +13,6 @@ use App\Repository\StationveloRepository;
 #[ORM\Table(name: 'stationvelo')]
 class Stationvelo
 {
-    public $lat; public $lon;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -31,10 +30,12 @@ class Stationvelo
     }
 
     #[ORM\Column(type: 'string', nullable: false)]
-    #[Assert\NotBlank(message: 'The station name cannot be blank.')]
+    #[Assert\NotBlank(message: "Le nom de la station est obligatoire.")]
     #[Assert\Length(
-        max: 20,
-        maxMessage: 'The station name cannot exceed {{ limit }} characters.'
+        min: 2,
+        max: 100,
+        minMessage: "Le nom de la station doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom de la station ne peut pas dépasser {{ limit }} caractères."
     )]
     private ?string $name_station = null;
 
@@ -50,10 +51,12 @@ class Stationvelo
     }
 
     #[ORM\Column(type: 'string', nullable: false)]
-    #[Assert\NotBlank(message: 'The governorate cannot be blank.')]
+    #[Assert\NotBlank(message: "Le gouvernorat est obligatoire.")]
     #[Assert\Length(
-        max: 255,
-        maxMessage: 'The governorate cannot exceed {{ limit }} characters.'
+        min: 2,
+        max: 100,
+        minMessage: "Le gouvernorat doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le gouvernorat ne peut pas dépasser {{ limit }} caractères."
     )]
     private ?string $gouvernera = null;
 
@@ -69,10 +72,12 @@ class Stationvelo
     }
 
     #[ORM\Column(type: 'string', nullable: false)]
-    #[Assert\NotBlank(message: 'The municipality cannot be blank.')]
+    #[Assert\NotBlank(message: "La municipalité est obligatoire.")]
     #[Assert\Length(
-        max: 255,
-        maxMessage: 'The municipality cannot exceed {{ limit }} characters.'
+        min: 2,
+        max: 100,
+        minMessage: "La municipalité doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "La municipalité ne peut pas dépasser {{ limit }} caractères."
     )]
     private ?string $municapilite = null;
 
@@ -88,10 +93,12 @@ class Stationvelo
     }
 
     #[ORM\Column(type: 'string', nullable: false)]
-    #[Assert\NotBlank(message: 'The address cannot be blank.')]
+    #[Assert\NotBlank(message: "L'adresse est obligatoire.")]
     #[Assert\Length(
-        max: 255,
-        maxMessage: 'The address cannot exceed {{ limit }} characters.'
+        min: 2,
+        max: 200,
+        minMessage: "L'adresse doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "L'adresse ne peut pas dépasser {{ limit }} caractères."
     )]
     private ?string $adresse = null;
 
@@ -108,6 +115,7 @@ class Stationvelo
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'stationvelos')]
     #[ORM\JoinColumn(name: 'id_admin', referencedColumnName: 'id')]
+    #[Assert\NotNull(message: "Un administrateur doit être assigné.")]
     private ?User $user = null;
 
     public function getUser(): ?User
@@ -122,7 +130,7 @@ class Stationvelo
     }
 
     #[ORM\Column(type: 'string', nullable: false)]
-   
+    
     private ?string $station_image = null;
 
     public function getStation_image(): ?string

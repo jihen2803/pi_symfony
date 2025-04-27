@@ -1,5 +1,8 @@
 {# templates/stationvelo/_form.html.twig #}
+{# templates/Admin/stationvelo/_form.html.twig #}
+
 {{ form_start(form, {'attr': {'class': 'modern-station-form', 'novalidate': 'novalidate'}}) }}
+
 <div class="form-glass-container">
     <div class="form-header">
         <h3><i class="fas fa-bicycle"></i> Station Information</h3>
@@ -8,88 +11,79 @@
     <div class="form-body">
         <!-- Station Name -->
         <div class="form-row floating-input">
-            {{ form_label(form.name_station) }}
+            {{ form_label(form.name_station, "Nom de la Station", {'label_attr': {'class': 'form-label'}}) }}
             <div class="input-group">
                 <span class="input-icon"><i class="fas fa-signature"></i></span>
-                {{ form_widget(form.name_station, {'attr': {
-                    'class': 'form-control',
-                    'placeholder': ' ',
-                    'data-placeholder': 'e.g. Central Bike Hub'
-                }}) }}
+                {{ form_widget(form.name_station, {'attr': {'class': 'form-control' ~ (form.name_station.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
             </div>
-            {{ form_errors(form.name_station) }}
-            <small class="form-hint">Enter the station name</small>
+            <div class="invalid-feedback">
+                {{ form_errors(form.name_station) }}
+            </div>
+            <small class="form-hint">Entrez le nom de la station</small>
         </div>
-        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }} 
+
         <!-- Governorate -->
         <div class="form-row floating-input">
-            {{ form_label(form.gouvernera) }}
+            {{ form_label(form.gouvernera, "Gouvernorat", {'label_attr': {'class': 'form-label'}}) }}
             <div class="input-group">
                 <span class="input-icon"><i class="fas fa-map-marked-alt"></i></span>
-                {{ form_widget(form.gouvernera, {'attr': {
-                    'class': 'form-control',
-                    'placeholder': ' ',
-                    'data-placeholder': 'e.g. Tunis, Ariana'
-                }}) }}
+                {{ form_widget(form.gouvernera, {'attr': {'class': 'form-control' ~ (form.gouvernera.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
             </div>
-            {{ form_errors(form.gouvernera) }}
-            <small class="form-hint">Select the governorate</small>
+            <div class="invalid-feedback">
+                {{ form_errors(form.gouvernera) }}
+            </div>
+            <small class="form-hint">Sélectionnez le gouvernorat</small>
         </div>
-        
+
         <!-- Municipality -->
         <div class="form-row floating-input">
-            {{ form_label(form.municapilite) }}
+            {{ form_label(form.municapilite, "Municipalité", {'label_attr': {'class': 'form-label'}}) }}
             <div class="input-group">
                 <span class="input-icon"><i class="fas fa-city"></i></span>
-                {{ form_widget(form.municapilite, {'attr': {
-                    'class': 'form-control',
-                    'placeholder': ' ',
-                    'data-placeholder': 'e.g. Lafayette'
-                }}) }}
+                {{ form_widget(form.municapilite, {'attr': {'class': 'form-control' ~ (form.municapilite.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
             </div>
-            {{ form_errors(form.municapilite) }}
-            <small class="form-hint">Enter the municipality</small>
+            <div class="invalid-feedback">
+                {{ form_errors(form.municapilite) }}
+            </div>
+            <small class="form-hint">Entrez la municipalité</small>
         </div>
-        
+
         <!-- Address -->
         <div class="form-row floating-input">
-            {{ form_label(form.adresse) }}
+            {{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'form-label'}}) }}
             <div class="input-group">
                 <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
-                {{ form_widget(form.adresse, {'attr': {
-                    'class': 'form-control',
-                    'placeholder': ' ',
-                    'data-placeholder': 'Full street address'
-                }}) }}
+                {{ form_widget(form.adresse, {'attr': {'class': 'form-control' ~ (form.adresse.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
             </div>
-            {{ form_errors(form.adresse) }}
-            <small class="form-hint">Enter the complete address</small>
+            <div class="invalid-feedback">
+                {{ form_errors(form.adresse) }}
+            </div>
+            <small class="form-hint">Entrez l'adresse complète</small>
         </div>
-        
-       
-        
+
         <!-- Admin Selector -->
         <div class="form-row floating-input">
-            {{ form_label(form.user) }}
+            {{ form_label(form.user, "Administrateur", {'label_attr': {'class': 'form-label'}}) }}
             <div class="input-group">
                 <span class="input-icon"><i class="fas fa-user-shield"></i></span>
-                {{ form_widget(form.user, {'attr': {
-                    'class': 'form-control select-input',
-                    'placeholder': ' '
-                }}) }}
+                {{ form_widget(form.user, {'attr': {'class': 'form-control' ~ (form.user.vars.errors|length > 0 ? ' is-invalid' : '')}}) }}
             </div>
-            {{ form_errors(form.user) }}
-            <small class="form-hint">Select the station administrator</small>
+            <div class="invalid-feedback">
+                {{ form_errors(form.user) }}
+            </div>
+            <small class="form-hint">Choisissez l'administrateur de la station</small>
         </div>
     </div>
-    
+
     <div class="form-footer">
         <button type="submit" class="btn-submit">
-            <i class="fas fa-save"></i> {{ button_label|default('Save Station') }}
+            <i class="fas fa-save"></i> {{ button_label|default('Enregistrer la Station') }}
         </button>
     </div>
 </div>
+
 {{ form_end(form) }}
+
 
 <style>
     .modern-station-form {
