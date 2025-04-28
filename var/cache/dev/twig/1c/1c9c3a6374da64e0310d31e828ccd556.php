@@ -498,6 +498,6 @@ class __TwigTemplate_c7bdb110cce0e01f6aee3eb7522aa7b1 extends Template
             left: 0.75rem;
         }
     }
-</style>", "Admin/velo_type/_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo_type\\_form.html.twig");
+</style>", "Admin/velo_type/_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo_type\\_form.html.twig");
     }
 }

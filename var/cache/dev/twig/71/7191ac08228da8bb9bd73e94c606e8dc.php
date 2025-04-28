@@ -94,6 +94,6 @@ class __TwigTemplate_9da0da42ef4bad03fc117de66631d5f8 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ reservation_taxi.id) }}\">
     <button class=\"btn\">Delete</button>
 </form>
-", "Admin/reservation_taxi/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\reservation_taxi\\_delete_form.html.twig");
+", "Admin/reservation_taxi/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\reservation_taxi\\_delete_form.html.twig");
     }
 }

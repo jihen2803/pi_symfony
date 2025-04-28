@@ -741,6 +741,6 @@ class __TwigTemplate_19bd60a428598d3c75739ed2667ed6fc extends Template
 
 
 
-", "Admin/velo/edit.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo\\edit.html.twig");
+", "Admin/velo/edit.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo\\edit.html.twig");
     }
 }

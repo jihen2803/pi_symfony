@@ -218,6 +218,6 @@ class __TwigTemplate_b5a3004c3b7000cf781bb1af9979631e extends Template
     </div>
     
     <a href=\"{{ path('app_stations_index') }}\" class=\"btn btn-primary mt-3\">Back to list</a>
-{% endblock %}", "Admin/stationvelo/show.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\stationvelo\\show.html.twig");
+{% endblock %}", "Admin/stationvelo/show.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\stationvelo\\show.html.twig");
     }
 }

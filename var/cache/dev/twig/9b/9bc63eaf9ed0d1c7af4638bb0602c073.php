@@ -903,6 +903,6 @@ class __TwigTemplate_a34d2714d3c9121ab8139f044ce6c49e extends Template
         </script>
     {% endblock %}
 </body>
-</html>", "Front/userDashboard.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Front\\userDashboard.html.twig");
+</html>", "Front/userDashboard.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Front\\userDashboard.html.twig");
     }
 }

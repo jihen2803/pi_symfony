@@ -228,6 +228,6 @@ class __TwigTemplate_d68b87506930ae50e8c4659a600bc5bc extends Template
 
     <a href=\"{{ path('app_reservation_taxi_new') }}\">Create new</a>
 {% endblock %}
-", "Admin/reservation_taxi/index.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\reservation_taxi\\index.html.twig");
+", "Admin/reservation_taxi/index.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\reservation_taxi\\index.html.twig");
     }
 }

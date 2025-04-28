@@ -162,6 +162,6 @@ class __TwigTemplate_dccd6174d7df808fa9b5d056d080797e extends Template
 
     {{ include('Admin/reservation_taxi/_delete_form.html.twig') }}
 {% endblock %}
-", "Admin/reservation_taxi/edit.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\reservation_taxi\\edit.html.twig");
+", "Admin/reservation_taxi/edit.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\reservation_taxi\\edit.html.twig");
     }
 }

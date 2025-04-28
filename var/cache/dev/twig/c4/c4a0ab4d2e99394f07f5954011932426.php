@@ -289,6 +289,6 @@ class __TwigTemplate_cd99305fbec02504af1c6125d1e22455 extends Template
         font-size: 1.25rem;
     }
 </style>
-{% endblock %}", "Admin/admin_cov/dashboard.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\admin_cov\\dashboard.html.twig");
+{% endblock %}", "Admin/admin_cov/dashboard.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\admin_cov\\dashboard.html.twig");
     }
 }

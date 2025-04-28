@@ -893,6 +893,6 @@ class __TwigTemplate_c4adf1bc5bfa5a635d4d8350716aceed extends Template
     </section>
 
   </main><!-- End #main -->
-{% endblock %}", "Admin/vehicule/show.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\vehicule\\show.html.twig");
+{% endblock %}", "Admin/vehicule/show.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\vehicule\\show.html.twig");
     }
 }

@@ -154,6 +154,6 @@ class __TwigTemplate_40f7e0ac525688410ae68d8c969a22f5 extends Template
 
     <a href=\"{{ path('app_reservationvelo_index') }}\">back to list</a>
 {% endblock %}
-", "Front/reservationvelo/new.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Front\\reservationvelo\\new.html.twig");
+", "Front/reservationvelo/new.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Front\\reservationvelo\\new.html.twig");
     }
 }

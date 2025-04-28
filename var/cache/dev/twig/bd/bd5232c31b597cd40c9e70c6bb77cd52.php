@@ -155,6 +155,6 @@ class __TwigTemplate_944a239f4fd0c3d5004f10bb52205ecb extends Template
 
     <a href=\"{{ path('app_reservation_taxi_index') }}\">back to list</a>
 {% endblock %}
-", "Admin/reservation_taxi/new.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\reservation_taxi\\new.html.twig");
+", "Admin/reservation_taxi/new.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\reservation_taxi\\new.html.twig");
     }
 }

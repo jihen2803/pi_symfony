@@ -99,6 +99,6 @@ class __TwigTemplate_7ed0442b76030cdcf03107561197d64b extends Template
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-", "Admin/vehicule/_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\vehicule\\_form.html.twig");
+", "Admin/vehicule/_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\vehicule\\_form.html.twig");
     }
 }

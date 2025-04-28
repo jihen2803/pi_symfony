@@ -1030,6 +1030,6 @@ class __TwigTemplate_a734e7717deef00398dc299ba84aaf8b extends Template
         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
     </div>
   {% endfor %}
-{% endblock %}", "Admin/vehicule/index.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\vehicule\\index.html.twig");
+{% endblock %}", "Admin/vehicule/index.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\vehicule\\index.html.twig");
     }
 }

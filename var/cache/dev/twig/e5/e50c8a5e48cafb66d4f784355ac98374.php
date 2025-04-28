@@ -94,6 +94,6 @@ class __TwigTemplate_f57124a9420d34d23834a6a33c2c1628 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ stationvelo.id_station) }}\">
     <button class=\"btn\">Delete</button>
 </form>
-", "Admin/stationvelo/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\stationvelo\\_delete_form.html.twig");
+", "Admin/stationvelo/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\stationvelo\\_delete_form.html.twig");
     }
 }

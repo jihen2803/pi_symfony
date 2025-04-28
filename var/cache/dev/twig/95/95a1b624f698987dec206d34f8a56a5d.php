@@ -516,6 +516,6 @@ class __TwigTemplate_fe6a33cf2ea68e993d136ecf41ee8298 extends Template
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\base.html.twig");
+", "base.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\base.html.twig");
     }
 }

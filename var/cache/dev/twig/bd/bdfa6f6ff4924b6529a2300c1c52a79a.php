@@ -778,6 +778,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-{% endblock %}", "Front/stationvelo/velos.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Front\\stationvelo\\velos.html.twig");
+{% endblock %}", "Front/stationvelo/velos.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Front\\stationvelo\\velos.html.twig");
     }
 }

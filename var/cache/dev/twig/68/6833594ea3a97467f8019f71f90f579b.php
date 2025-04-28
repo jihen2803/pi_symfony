@@ -85,6 +85,6 @@ class __TwigTemplate_498f1a81fbc9f2e75e6a83693de192d8 extends Template
     <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\"></path>
     <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\"></path>
 </svg>
-", "@Doctrine/Collector/database.svg", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\database.svg");
+", "@Doctrine/Collector/database.svg", "C:\\Users\\jihen\\Desktop\\pi_symfony\\vendor\\doctrine\\doctrine-bundle\\templates\\Collector\\database.svg");
     }
 }

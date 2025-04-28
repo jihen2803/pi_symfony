@@ -639,6 +639,6 @@ class __TwigTemplate_c516d40167339bb83bb3f290ad564038 extends Template
       </div>
     </section>
   </main><!-- End #main -->
-{% endblock %}", "Admin/vehicule/new.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\vehicule\\new.html.twig");
+{% endblock %}", "Admin/vehicule/new.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\vehicule\\new.html.twig");
     }
 }

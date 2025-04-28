@@ -94,6 +94,6 @@ class __TwigTemplate_05888eaf92fee8aa92e849a56b613b39 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ vehicule.id) }}\">
     <button class=\"btn\">Delete</button>
 </form>
-", "Admin/vehicule/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\vehicule\\_delete_form.html.twig");
+", "Admin/vehicule/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\vehicule\\_delete_form.html.twig");
     }
 }

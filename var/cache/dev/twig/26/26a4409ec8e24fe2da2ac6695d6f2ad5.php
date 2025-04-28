@@ -1202,6 +1202,6 @@ class __TwigTemplate_19d28224d48fbb279046ac67deee8ea8 extends Template
   </main><!-- End #main -->
 
  
-{% endblock %}", "Admin/velo/index.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo\\index.html.twig");
+{% endblock %}", "Admin/velo/index.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo\\index.html.twig");
     }
 }

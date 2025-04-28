@@ -195,6 +195,6 @@ class __TwigTemplate_971ab4d584fa22df9d193bb5928dd43f extends Template
 
     {{ include('velo/_delete_form.html.twig') }}
 {% endblock %}
-", "Admin/velo/show.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo\\show.html.twig");
+", "Admin/velo/show.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo\\show.html.twig");
     }
 }

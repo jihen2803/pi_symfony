@@ -823,6 +823,6 @@ class __TwigTemplate_0a6c2ceba245cb648310a6e6f1d88887 extends Template
       </div>
     </section>
   </main><!-- End #main -->
-{% endblock %}", "Admin/reservation_cov/edit.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\reservation_cov\\edit.html.twig");
+{% endblock %}", "Admin/reservation_cov/edit.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\reservation_cov\\edit.html.twig");
     }
 }

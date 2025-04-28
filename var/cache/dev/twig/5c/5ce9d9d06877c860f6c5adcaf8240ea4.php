@@ -589,6 +589,6 @@ class __TwigTemplate_6598cfa579fe11df65819a3caf2241d1 extends Template
             padding: 1.5rem;
         }
     }
-</style>", "Admin/velo/_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo\\_form.html.twig");
+</style>", "Admin/velo/_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo\\_form.html.twig");
     }
 }

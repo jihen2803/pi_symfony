@@ -903,6 +903,6 @@ class __TwigTemplate_e7ff6017178a752ebbcb44f67c4dae08 extends Template
   </main><!-- End #main -->
 
  
-{% endblock %}", "Admin/velo_type/index.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo_type\\index.html.twig");
+{% endblock %}", "Admin/velo_type/index.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo_type\\index.html.twig");
     }
 }

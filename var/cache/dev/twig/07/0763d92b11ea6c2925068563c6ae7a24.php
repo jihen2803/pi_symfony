@@ -151,27 +151,39 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
             </div>
 
             <!-- Results Section -->
-            <div class=\"d-flex justify-content-between align-items-center mb-4\">
-                <h2 class=\"h4 mb-0\">Available Stations</h2>
-                <div class=\"text-muted\">
-                    <span class=\"badge bg-light text-dark\">";
-        // line 48
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 48, $this->source); })())), "html", null, true);
+           ";
+        // line 46
+        yield "                <div class=\"d-flex justify-content-between align-items-center mb-4\">
+                    <h2 class=\"h4 mb-0\">Available Stations</h2>
+                    <div class=\"d-flex align-items-center gap-3\">
+                        <a href=\"";
+        // line 49
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_reservationvelo_index");
+        yield "\" 
+                        class=\"btn btn-outline-primary btn-sm\">
+                            <i class=\"fas fa-list me-2\"></i>
+                            My Reservations
+                        </a>
+                        <div class=\"text-muted\">
+                            <span class=\"badge bg-light text-dark\">";
+        // line 55
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 55, $this->source); })())), "html", null, true);
         yield " stations found</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             ";
-        // line 52
-        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 52, $this->source); })())) > 0)) {
-            // line 53
+        // line 60
+        if ((Twig\Extension\CoreExtension::length($this->env->getCharset(), (isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 60, $this->source); })())) > 0)) {
+            // line 61
             yield "                <div class=\"row g-4\">
                     ";
-            // line 54
+            // line 62
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 54, $this->source); })()));
+            $context['_seq'] = CoreExtension::ensureTraversable((isset($context["stations"]) || array_key_exists("stations", $context) ? $context["stations"] : (function () { throw new RuntimeError('Variable "stations" does not exist.', 62, $this->source); })()));
             foreach ($context['_seq'] as $context["_key"] => $context["station"]) {
-                // line 55
+                // line 63
                 yield "                    <div class=\"col-md-6 col-lg-4\">
                         <div class=\"card h-100 border-0 shadow-sm station-card\">
                             <div class=\"card-body\">
@@ -180,13 +192,13 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                                         <h3 class=\"h5 mb-1\">
                                             <i class=\"fas fa-bicycle text-primary me-2\"></i>
                                             ";
-                // line 62
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "name_station", [], "any", false, false, false, 62), "html", null, true);
+                // line 70
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "name_station", [], "any", false, false, false, 70), "html", null, true);
                 yield "
                                         </h3>
                                         <div class=\"text-muted small\">";
-                // line 64
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "gouvernera", [], "any", false, false, false, 64), "html", null, true);
+                // line 72
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "gouvernera", [], "any", false, false, false, 72), "html", null, true);
                 yield "</div>
                                     </div>
                                     <span class=\"badge bg-success bg-opacity-10 text-success\">Open</span>
@@ -196,23 +208,23 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                                     <div class=\"d-flex align-items-center mb-2\">
                                         <i class=\"fas fa-map-marker-alt text-muted me-2\"></i>
                                         <span class=\"small\">";
-                // line 72
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "adresse", [], "any", false, false, false, 72), "html", null, true);
+                // line 80
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "adresse", [], "any", false, false, false, 80), "html", null, true);
                 yield "</span>
                                     </div>
                                     <div class=\"d-flex align-items-center\">
                                         <i class=\"fas fa-city text-muted me-2\"></i>
                                         <span class=\"small\">";
-                // line 76
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "municapilite", [], "any", false, false, false, 76), "html", null, true);
+                // line 84
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "municapilite", [], "any", false, false, false, 84), "html", null, true);
                 yield "</span>
                                     </div>
                                 </div>
 
                                 ";
-                // line 80
-                if ((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 80) && CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 80))) {
-                    // line 81
+                // line 88
+                if ((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 88) && CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 88))) {
+                    // line 89
                     yield "                                <div class=\"mb-3\">
                                     <iframe
                                         width=\"100%\"
@@ -223,31 +235,31 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                                         marginwidth=\"0\"
                                         style=\"border-radius: 8px;\"
                                         src=\"https://www.openstreetmap.org/export/embed.html?bbox=";
-                    // line 90
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 90) - 0.005), "html", null, true);
+                    // line 98
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 98) - 0.005), "html", null, true);
                     yield ",";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 90) - 0.005), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 98) - 0.005), "html", null, true);
                     yield ",";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 90) + 0.005), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 98) + 0.005), "html", null, true);
                     yield ",";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 90) + 0.005), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 98) + 0.005), "html", null, true);
                     yield "&layer=mapnik&marker=";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 90), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 98), "html", null, true);
                     yield ",";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 90), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 98), "html", null, true);
                     yield "\">
                                     </iframe>
                                     <small>
                                         <a target=\"_blank\"
                                            href=\"https://www.openstreetmap.org/?mlat=";
-                    // line 94
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 94), "html", null, true);
+                    // line 102
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 102), "html", null, true);
                     yield "&mlon=";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 94), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 102), "html", null, true);
                     yield "#map=15/";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 94), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lat", [], "any", false, false, false, 102), "html", null, true);
                     yield "/";
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 94), "html", null, true);
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["station"], "lon", [], "any", false, false, false, 102), "html", null, true);
                     yield "\">
                                             Voir sur OpenStreetMap
                                         </a>
@@ -255,17 +267,17 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                                 </div>
                                 ";
                 } else {
-                    // line 100
+                    // line 108
                     yield "                                <div class=\"text-danger small mb-2\">Coordonnées indisponibles pour cette station.</div>
                                 ";
                 }
-                // line 102
+                // line 110
                 yield "                            </div>
 
                             <div class=\"card-footer bg-transparent border-top-0 pt-0 pb-3\">
                                 <a href=\"";
-                // line 105
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("velos_list", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["station"], "id_station", [], "any", false, false, false, 105)]), "html", null, true);
+                // line 113
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("velos_list", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["station"], "id_station", [], "any", false, false, false, 113)]), "html", null, true);
                 yield "\" 
                                    class=\"btn btn-primary w-100 d-flex align-items-center justify-content-center\">
                                     View Bikes
@@ -279,11 +291,11 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['station'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 114
+            // line 122
             yield "                </div>
             ";
         } else {
-            // line 116
+            // line 124
             yield "                <div class=\"card border-0 shadow-sm\">
                     <div class=\"card-body text-center py-5\">
                         <div class=\"mb-4\">
@@ -292,7 +304,7 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                         <h3 class=\"h5 mb-2\">No stations found</h3>
                         <p class=\"text-muted mb-4\">Try searching with different keywords</p>
                         <a href=\"";
-            // line 123
+            // line 131
             yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_stations_search");
             yield "\" class=\"btn btn-outline-primary\">
                             <i class=\"fas fa-redo me-2\"></i>Reset Search
@@ -301,7 +313,7 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                 </div>
             ";
         }
-        // line 129
+        // line 137
         yield "        </div>
     </div>
 </div>
@@ -366,7 +378,7 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  305 => 129,  296 => 123,  287 => 116,  283 => 114,  268 => 105,  263 => 102,  259 => 100,  244 => 94,  227 => 90,  216 => 81,  214 => 80,  207 => 76,  200 => 72,  189 => 64,  184 => 62,  175 => 55,  171 => 54,  168 => 53,  166 => 52,  159 => 48,  141 => 33,  134 => 29,  127 => 25,  120 => 21,  113 => 17,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  317 => 137,  308 => 131,  299 => 124,  295 => 122,  280 => 113,  275 => 110,  271 => 108,  256 => 102,  239 => 98,  228 => 89,  226 => 88,  219 => 84,  212 => 80,  201 => 72,  196 => 70,  187 => 63,  183 => 62,  180 => 61,  178 => 60,  170 => 55,  161 => 49,  156 => 46,  141 => 33,  134 => 29,  127 => 25,  120 => 21,  113 => 17,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -415,12 +427,20 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
             </div>
 
             <!-- Results Section -->
-            <div class=\"d-flex justify-content-between align-items-center mb-4\">
-                <h2 class=\"h4 mb-0\">Available Stations</h2>
-                <div class=\"text-muted\">
-                    <span class=\"badge bg-light text-dark\">{{ stations|length }} stations found</span>
+           {# Replace the existing Results Section div with this #}
+                <div class=\"d-flex justify-content-between align-items-center mb-4\">
+                    <h2 class=\"h4 mb-0\">Available Stations</h2>
+                    <div class=\"d-flex align-items-center gap-3\">
+                        <a href=\"{{ path('app_reservationvelo_index') }}\" 
+                        class=\"btn btn-outline-primary btn-sm\">
+                            <i class=\"fas fa-list me-2\"></i>
+                            My Reservations
+                        </a>
+                        <div class=\"text-muted\">
+                            <span class=\"badge bg-light text-dark\">{{ stations|length }} stations found</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
             {% if stations|length > 0 %}
                 <div class=\"row g-4\">
@@ -533,6 +553,6 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
     }
 </style>
 {% endblock %}
-", "Front/stationvelo/search.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Front\\stationvelo\\search.html.twig");
+", "Front/stationvelo/search.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Front\\stationvelo\\search.html.twig");
     }
 }

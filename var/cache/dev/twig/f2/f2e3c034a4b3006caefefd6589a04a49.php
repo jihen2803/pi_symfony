@@ -115,6 +115,6 @@ class __TwigTemplate_b6e52b4ed5c96092bd8295fd447dcb49 extends Template
 <p><strong>End:</strong> {{ reservation.dateFin|date('Y-m-d H:i') }}</p>
 
 <p>Have a safe ride!</p>
-", "emails/reservation_confirmation.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\emails\\reservation_confirmation.html.twig");
+", "emails/reservation_confirmation.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\emails\\reservation_confirmation.html.twig");
     }
 }

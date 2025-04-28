@@ -97,6 +97,6 @@ class __TwigTemplate_7081dd9f4074430f77af024b19c6f37c extends Template
     <button class=\"btn btn-danger\">
         <i class=\"fas fa-trash\"></i> Delete
     </button>
-</form>", "Admin/velo_type/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\Wasalni_Web\\Wasalni\\Wasalni\\templates\\Admin\\velo_type\\_delete_form.html.twig");
+</form>", "Admin/velo_type/_delete_form.html.twig", "C:\\Users\\jihen\\Desktop\\pi_symfony\\templates\\Admin\\velo_type\\_delete_form.html.twig");
     }
 }
