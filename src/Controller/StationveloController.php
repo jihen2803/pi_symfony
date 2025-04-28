@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\StationveloFormType;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class StationveloController extends AbstractController
 {
@@ -21,9 +22,15 @@ class StationveloController extends AbstractController
     }
 
     #[Route('/stations', name: 'app_stations_index')]
-    public function index(StationveloRepository $stationveloRepository): Response
+    public function index(Request $request, StationveloRepository $stationveloRepository, PaginatorInterface $paginator): Response
     {
-        $stations = $stationveloRepository->findAllStations();
+        $query = $stationveloRepository->createQueryBuilder('s')->getQuery();
+
+        $stations = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            3 // Number of stations per page
+        );
 
         return $this->render('Admin/stationvelo/index.html.twig', [
             'stations' => $stations,
@@ -31,72 +38,83 @@ class StationveloController extends AbstractController
     }
 
     #[Route('/stations/search', name: 'app_stations_search')]
-    public function searchStations(Request $request, StationveloRepository $stationveloRepository): Response
-    {
-        $name = $request->query->get('name_station');
-        $gouvernera = $request->query->get('gouvernera');
-        $municapilite = $request->query->get('municapilite');
-        $adresse = $request->query->get('adresse');
+public function searchStations(Request $request, StationveloRepository $stationveloRepository, PaginatorInterface $paginator): Response
+{
+    $name = $request->query->get('name_station');
+    $gouvernera = $request->query->get('gouvernera');
+    $municapilite = $request->query->get('municapilite');
+    $adresse = $request->query->get('adresse');
 
-        $qb = $stationveloRepository->createQueryBuilder('s');
+    $qb = $stationveloRepository->createQueryBuilder('s');
 
-        if ($name) {
-            $qb->andWhere('s.name_station LIKE :name')->setParameter('name', "%$name%");
-        }
+    if ($name) {
+        $qb->andWhere('s.name_station LIKE :name')->setParameter('name', "%$name%");
+    }
 
-        if ($gouvernera) {
-            $qb->andWhere('s.gouvernera LIKE :gouv')->setParameter('gouv', "%$gouvernera%");
-        }
+    if ($gouvernera) {
+        $qb->andWhere('s.gouvernera LIKE :gouv')->setParameter('gouv', "%$gouvernera%");
+    }
 
-        if ($municapilite) {
-            $qb->andWhere('s.municapilite LIKE :mun')->setParameter('mun', "%$municapilite%");
-        }
+    if ($municapilite) {
+        $qb->andWhere('s.municapilite LIKE :mun')->setParameter('mun', "%$municapilite%");
+    }
 
-        if ($adresse) {
-            $qb->andWhere('s.adresse LIKE :adr')->setParameter('adr', "%$adresse%");
-        }
+    if ($adresse) {
+        $qb->andWhere('s.adresse LIKE :adr')->setParameter('adr', "%$adresse%");
+    }
 
-        $stations = $qb->getQuery()->getResult();
+    $query = $qb->getQuery();
 
-        foreach ($stations as $station) {
-            $fullAddress = urlencode($station->getGouvernera() . ' ' . $station->getMunicapilite() . ' ' . $station->getAdresse());
+    $stations = $paginator->paginate(
+        $query,
+        $request->query->getInt('page', 1),
+        3
+    );
 
-            try {
-                $response = $this->client->request('GET', 'https://nominatim.openstreetmap.org/search', [
-                    'query' => [
-                        'q' => $fullAddress,
-                        'format' => 'json'
-                    ],
-                    'headers' => [
-                        'User-Agent' => 'SymfonyBikeApp/1.0'
-                    ]
-                ]);
+    foreach ($stations as $station) {
+        $fullAddress = urlencode($station->getGouvernera() . ' ' . $station->getMunicapilite() . ' ' . $station->getAdresse());
 
-                $results = $response->toArray();
+        try {
+            $response = $this->client->request('GET', 'https://nominatim.openstreetmap.org/search', [
+                'query' => [
+                    'q' => $fullAddress,
+                    'format' => 'json'
+                ],
+                'headers' => [
+                    'User-Agent' => 'SymfonyBikeApp/1.0'
+                ]
+            ]);
 
-                if (!empty($results)) {
-                    $station->lat = $results[0]['lat'];
-                    $station->lon = $results[0]['lon'];
-                } else {
-                    $station->lat = null;
-                    $station->lon = null;
-                }
-            } catch (\Exception $e) {
+            $results = $response->toArray();
+
+            if (!empty($results)) {
+                $station->lat = $results[0]['lat'];
+                $station->lon = $results[0]['lon'];
+            } else {
                 $station->lat = null;
                 $station->lon = null;
             }
+        } catch (\Exception $e) {
+            $station->lat = null;
+            $station->lon = null;
         }
-
-        return $this->render('Front/stationvelo/search.html.twig', [
-            'stations' => $stations,
-            'filters' => [
-                'name_station' => $name,
-                'gouvernera' => $gouvernera,
-                'municapilite' => $municapilite,
-                'adresse' => $adresse,
-            ]
-        ]);
     }
+
+    return $this->render('Front/stationvelo/search.html.twig', [
+        'stations' => $stations,
+        'filters' => [
+            'name_station' => $name,
+            'gouvernera' => $gouvernera,
+            'municapilite' => $municapilite,
+            'adresse' => $adresse,
+        ]
+    ]);
+}
+
+
+        
+            
+            
 
     #[Route('/station/new', name: 'app_station_new')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

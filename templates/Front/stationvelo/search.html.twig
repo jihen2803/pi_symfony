@@ -47,7 +47,7 @@
                     <h2 class="h4 mb-0">Available Stations</h2>
                     <div class="d-flex align-items-center gap-3">
                         <a href="{{ path('app_reservationvelo_index') }}" 
-                        class="btn btn-outline-primary btn-sm">
+                        class="btn btn-outline-primary btn-sm" >
                             <i class="fas fa-list me-2"></i>
                             My Reservations
                         </a>
@@ -119,6 +119,8 @@
                         </div>
                     </div>
                     {% endfor %}
+                    {{ knp_pagination_render(stations) }}
+
                 </div>
             {% else %}
                 <div class="card border-0 shadow-sm">

@@ -160,7 +160,7 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
         // line 49
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_reservationvelo_index");
         yield "\" 
-                        class=\"btn btn-outline-primary btn-sm\">
+                        class=\"btn btn-outline-primary btn-sm\" >
                             <i class=\"fas fa-list me-2\"></i>
                             My Reservations
                         </a>
@@ -432,7 +432,7 @@ class __TwigTemplate_262031562f22df08e84f68da1ab69767 extends Template
                     <h2 class=\"h4 mb-0\">Available Stations</h2>
                     <div class=\"d-flex align-items-center gap-3\">
                         <a href=\"{{ path('app_reservationvelo_index') }}\" 
-                        class=\"btn btn-outline-primary btn-sm\">
+                        class=\"btn btn-outline-primary btn-sm\" >
                             <i class=\"fas fa-list me-2\"></i>
                             My Reservations
                         </a>
